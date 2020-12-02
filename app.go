@@ -269,9 +269,9 @@ func main() {
 	IP := os.Getenv("ICS_IP")
 	PORT := os.Getenv("ICS_PORT")
 
-	if _, err := fmt.Sscanf(os.getenv("ICS_WEEK_NUMBER"), "%d", &WeekNumber); err != nil {
+	if _, err := fmt.Sscanf(os.Getenv("ICS_WEEK_NUMBER"), "%d", &WeekNumber); err != nil {
 		log.Fatalf("'%s' is not a good value for ICS_WEEK_NUMBER",
-			os.getenv("ICS_WEEK_NUMBER"))
+			os.Getenv("ICS_WEEK_NUMBER"))
 	}
 
 	router := httprouter.New()

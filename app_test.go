@@ -25,17 +25,3 @@ func TestMergeList(t *testing.T) {
 		})
 	}
 }
-
-func TestHealthcheck(t *testing.T) {
-	tests := []struct {
-		name string
-		want int
-	}{{"sanity", 0}}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := Healthcheck(); got != tt.want {
-				t.Errorf("Healthcheck() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
