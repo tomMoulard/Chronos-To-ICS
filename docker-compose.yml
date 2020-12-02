@@ -7,7 +7,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - 'ICS_API_KEY=${API_KEY}'
+      - 'ICS_API_KEY=${ICS_API_KEY}'
       - 'ICS_PORT=8000'
       - 'ICS_WEEK_NUMBER=4'
     volumes:
