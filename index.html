@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width" />
+		<title>Chronos to ICS</title>
+		<style>
+.rainbow {
+	width: 100%;
+	left:0;
+	right: 0;
+	top: 0;
+	position: absolute;
+	background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+	background-size: 1800% 1800%;
+	animation: rainbow 18s ease infinite;
+}
+	.cat {
+		right: 0;
+		bottom: 0;
+		position: fixed;
+		padding: 15px;
+	}
+	.cat img {
+		max-width: 100%;
+		height: auto;
+		filter:drop-shadow(2px 2px 2px gray);
+	}
+	a:hover {
+		text-shadow: 2px 2px red, 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+	}
+	@-webkit-keyframes rainbow {
+		0%{background-position:0% 82%}
+		50%{background-position:100% 19%}
+		100%{background-position:0% 82%}
+	}
+	@-moz-keyframes rainbow {
+		0%{background-position:0% 82%}
+		50%{background-position:100% 19%}
+		100%{background-position:0% 82%}
+	}
+	@-o-keyframes rainbow {
+		0%{background-position:0% 82%}
+		50%{background-position:100% 19%}
+		100%{background-position:0% 82%}
+	}
+	@keyframes rainbow {
+		0%{background-position:0% 82%}
+		50%{background-position:100% 19%}
+		100%{background-position:0% 82%}
+	}
+		</style>
+	</head>
+	<body>
+		<div class="rainbow">
+			<h4>Choisisez votre classe:</h4>
+			<p>
+			Choisisez votre classe et ajoutez le lien dans votre calendrier pour avoir les cours.
+			</p>
+			<ul>
+				{{range .}}
+				<li><a href="/group/{{.ID}}">{{.Name}}</a></li>
+				<ul>
+					{{range .Groups}}
+					<li><a href="/group/{{.ID}}">{{.Name}}</a></li>
+					<ul>
+						{{range .Groups}}
+						<li><a href="/group/{{.ID}}">{{.Name}}</a></li>
+						<ul>
+							{{range .Groups}}
+							<li><a href="/group/{{.ID}}">{{.Name}}</a></li>
+							<ul>
+								{{range .Groups}}
+								<li><a href="/group/{{.ID}}">{{.Name}}</a></li>
+								<ul>
+									{{range .Groups}}
+									<li><a href="/group/{{.ID}}">{{.Name}}</a></li>
+									<ul>
+										{{range .Groups}}
+										<li><a href="/group/{{.ID}}">{{.Name}}</a></li>
+										{{end}}
+									</ul>
+									{{end}}
+								</ul>
+								{{end}}
+							</ul>
+							{{end}}
+						</ul>
+						{{end}}
+					</ul>
+					{{end}}
+				</ul>
+				{{end}}
+			</ul>
+			<footer style="text-align: center;">
+				<p>Author: <a href="tom.moulard@epita.fr">Tom Moulard</a></p>
+				<p><img src="https://hits.cyprin.eu/ics/ics.svg"></p>
+			</footer>
+		</div>
+		<div class="cat">
+			<img src="https://tom.moulard.org/picts/cat.png">
+		</div>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  app:
+    build: .
+    image: tommoulard/chronos-to-ics
+    ports:
+      - "8000:8000"
+    environment:
+      - 'ICS_API_KEY=${API_KEY}'
+      - 'ICS_PORT=8000'
+      - 'ICS_WEEK_NUMBER=4'
+    volumes:
+      - '/etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt'
+      - './index.html:/html/index.html'

@@ -1,0 +1,10 @@
+FROM golang:1.7.3
+
+WORKDIR /go/src/github.com/tommoulard/Chronos-To-ISC
+
+RUN go get -d -v \
+	github.com/arran4/golang-ical \
+	github.com/julienschmidt/httprouter
+
+COPY . .
+RUN go test -v ./...
