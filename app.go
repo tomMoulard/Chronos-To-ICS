@@ -140,6 +140,7 @@ func Healthcheck() int {
 	url := "https://v2ssl.webservices.chronos.epita.net/api/v2//Group/GetGroups"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
+		log.Println(err)
 		return 1
 	}
 
@@ -149,8 +150,10 @@ func Healthcheck() int {
 	var client = &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil || resp.StatusCode != http.StatusOK {
+		log.Println(err, resp.StatusCode)
 		return 1
 	}
+	log.Printf("Healthcheck at %s\n", time.Now())
 	return 0
 }
 
