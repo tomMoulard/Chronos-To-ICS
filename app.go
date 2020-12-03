@@ -105,7 +105,10 @@ func CourseListToIcal(cl CourseList, cal *ical.Calendar) {
 			end, _ := time.Parse(time.RFC3339, course.EndDate)
 			description := ""
 			if MergeList(course.StaffList) != "" {
-				description = "Course By" + MergeList(course.StaffList) + "\n"
+				description = "Cours par " + MergeList(course.StaffList) + "\n"
+			}
+			if MergeList(course.GroupList) != "" {
+				description += "Cours pour " + MergeList(course.GroupList) + "\n"
 			}
 			description += course.Info
 
@@ -118,16 +121,16 @@ func CourseListToIcal(cl CourseList, cal *ical.Calendar) {
 			event.SetEndAt(end)
 			event.SetSummary(course.Name)
 			event.SetDescription(description)
-			event.SetLocation(fmt.Sprintf("%s\n%s\n%s",
-				MergeList(course.RoomList),
-				MergeList(course.StaffList),
-				MergeList(course.GroupList)))
+			event.SetLocation(MergeList(course.RoomList))
 			event.SetURL(course.URL)
 			event.AddAttendee("reciever or participant",
 				ical.CalendarUserTypeGroup,
 				ical.WithRSVP(false))
 			event.SetProperty(ical.ComponentProperty(ical.PropertyDuration),
 				fmt.Sprintf("PT%dM", course.Duration))
+			for _, grp := range course.GroupList {
+				event.AddAttendee(grp.Name + "@epita.fr")
+			}
 		}
 	}
 }
